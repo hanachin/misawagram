@@ -1,0 +1,59 @@
+- require 'json'
+- require 'time'
+- misawa = JSON.parse(open('misawa.json') {|f| f.read })
+- categories = JSON.parse(open('categories.json') {|f| f.read })
+!!!
+%html
+  %head
+    %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=UTF-8' }
+
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=UTF-8" }
+    %meta{:property => "og:site_name", :content => "Misawagram" }
+    %meta{:property => "og:title", :content => "Misawagram"}
+    %meta{:property => "og:description", :content => "あー、はいはい。あー、はいはいはいはい。"}
+    %meta{:property => "og:url", :content => "http://www.weekendfab.com/misawagram/"}
+    %meta{:property => "og:image", :content => "http://www.weekendfab.com/misawagram/sample2.png"}
+    %meta{:property => "og:type", :content => "website"}
+    %meta{:property => "fb:admins", :content => "yasulab"}
+
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => "css/style.css" }
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => "css/jquery.lightbox-0.5.css" }
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => "css/tipsy.css" }
+    %script{ :type => "text/javascript", :src => "js/jquery-1.7.min.js" }
+    %script{ :type => "text/javascript", :src => "js/jquery.lightbox-0.5.js" }
+    %script{ :type => "text/javascript", :src => "js/jquery.tipsy.js" }
+    %script{ :type => "text/javascript", :src => "js/jquery.lazyload.min.js" }
+    %script{ :type => "text/javascript", :src => "js/coffee-script.js" }
+    %script{ :type => "text/javascript", :src => "http://platform.twitter.com/widgets.js" }
+    %script{ :type => "text/javascript", :src => "http://connect.facebook.net/ja_JP/all.js#xfbml=1", :id => "facebook-jssdk" }
+    %script{ :type => "text/coffeescript", :src => "main.coffee" }
+    %title Misawagram
+  %body
+    #fb-root
+    .container
+      .header
+        .right_ab
+          %span Contact:
+          %a{:href => "mailto:misawagram@gmail.com"} misawagram@gmail.com
+          %span Source code:
+          %a{:href => "https://github.com/hanachin/misawagram"} GitHub
+          %span Developers: 
+          %a{:href => "http://twitter.com/yasulab" } @yasulab
+          %a{:href => "http://twitter.com/hanachin_" } @hanachin_
+      .ib-top
+        %h1 Misawagram
+        .fb-like.right_ab{"data-href" => "http://www.weekendfab.com/misawagram/", "data-send" => "true", "data-width" => 450, "data-show-faces" => "false"}
+        %a{:href => "https://twitter.com/share", :class => "twitter-share-button", "data-count" => "horizontal",
+           "data-text" => "#Misawagram", "data-lang" => "ja" }
+          ツイート
+        %select{:name => "categories", :id => "categories", :class => "right_ab"}
+          %option{:value => "all" } 全て表示
+          - categories.each do |c|
+            %option{:value => c["cid"]}= c["name"]
+      .ib-main-wrapper
+        - misawa.sort{|a,b| Time.parse(b["timestamp"]) <=> Time.parse(a["timestamp"]) }.each do |m|
+          - if m["title"]["惚れさせ"]
+            %a{:href => "./images/#{m['eid']}.gif", :class => "tile cat#{m['cid']}", :title => m["title"], "data-origin-title" => m["title"]}
+              %img{:class => "lazy", :src => "space.gif", :alt => "#{m['title']}",
+                   :width => 100, :height => 100,
+                   "data-original" => "./thumbs/#{m['eid']}.png"}

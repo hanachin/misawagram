@@ -1,0 +1,12 @@
+*~
+*.pyc
+#*
+*.out
+.DS_Store
+*.png
+*.gif
+.sass-cache
+images
+thumbs
+misawa.json
+categories.json
