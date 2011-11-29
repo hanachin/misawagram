@@ -1,5 +1,5 @@
 $ ->
-  $(".container .tile a").lightBox()
+  $(".container a.tile").lightBox()
   $(".tile").tipsy( gravity: 'n', fade: true )
   $("#categories").bind 'change', ->
     if $(this).val() is "all"
