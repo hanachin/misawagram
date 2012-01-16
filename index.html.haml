@@ -24,6 +24,7 @@
     %script{ :type => "text/javascript", :src => "js/jquery.tipsy.js" }
     %script{ :type => "text/javascript", :src => "js/jquery.lazyload.min.js" }
     %script{ :type => "text/javascript", :src => "js/coffee-script.js" }
+    %script{ :type => "text/javascript", :src => "http://include.staffroll.net/github/script/1.0/load.js?theme=underground" }      
     %script{ :type => "text/javascript", :src => "http://platform.twitter.com/widgets.js" }
     %script{ :type => "text/javascript", :src => "http://connect.facebook.net/ja_JP/all.js#xfbml=1", :id => "facebook-jssdk" }
     %script{ :type => "text/coffeescript", :src => "main.coffee" }
@@ -34,10 +35,9 @@
       .header
         .right_ab
           %a{:href => "http://jigokuno.com/"} 地獄のミサワの「女に惚れさす名言集」
-          %span Contact:
-          %a{:href => "mailto:misawagram@gmail.com"} misawagram@gmail.com
-          %span Source code:
-          %a{:href => "https://github.com/hanachin/misawagram"} GitHub
+          %a{:href => "mailto:misawagram@gmail.com"} Contact
+          %a{:class => "staffroll", :href => "https://github.com/hanachin/misawagram/contributors"} Contributors
+          %a{:href => "https://github.com/hanachin/misawagram"} Code
       .ib-top
         %h1 Misawagram
         .fb-like.right_ab{"data-href" => "http://www.weekendfab.com/misawagram/", "data-send" => "true", "data-width" => 450, "data-show-faces" => "false"}
