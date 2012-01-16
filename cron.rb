@@ -91,7 +91,7 @@ misawa.each do |m|
     f = agent.get m["img_url"]
     f.save "images/#{m["eid"]}.gif"
   end
-  if not File.exist?("thumbs/#{m["eid"]}.gif")
+  if not File.exist?("thumbs/#{m["eid"]}.png")
     cmd = "convert -crop 100x100+70+50 images/#{m["eid"]}.gif thumbs/#{m["eid"]}.png"
     puts cmd
     system(cmd)
